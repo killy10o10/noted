@@ -5,10 +5,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Unbounded', system-ui, -apple-system;
 }
 
 body {
-  font-family: 'Unbounded', system-ui, -apple-system;
+  color: #ffff;
   background-color: $background-color;
 }
 
@@ -22,6 +23,8 @@ body {
   font-size: 4rem;
   font-weight: 800;
   text-align: center;
+  margin-top: auto;
+  // padding-top: 20px;
   background: url(),
     radial-gradient(
         60.25% 122.24% at 103.28% -41.67%,
@@ -45,6 +48,18 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  // text-fill-color: transparent;
   background-blend-mode: overlay, normal, normal, normal, normal;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

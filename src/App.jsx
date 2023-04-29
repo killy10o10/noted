@@ -1,11 +1,12 @@
 import './assets/styles/main.scss'
+import Splash from './components/Splash'
 
 function App() {
  
 
   return (
     <>
-        <h1 className='logo'>Noted</h1>
+        <Splash />
     </>
   )
 }
