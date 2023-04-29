@@ -1,11 +1,11 @@
-import './App.scss'
+import './assets/styles/main.scss'
 
 function App() {
  
 
   return (
     <>
-        <h1>Noted</h1>
+        <h1 className='logo'>Noted</h1>
     </>
   )
 }
