@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800&display=swap');
 @import 'variables';
 
 * {
@@ -18,8 +18,9 @@ body {
 }
 
 .logo {
-  font-family: 'Akira';
+  font-family: 'Akira', 'Unbounded', system-ui, -apple-system;
   font-size: 4rem;
+  font-weight: 800;
   text-align: center;
   background: url(),
     radial-gradient(
