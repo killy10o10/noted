@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import splashImg from '../assets/images/splash_image.svg';
 
 export default function Splash() {
@@ -14,7 +15,7 @@ export default function Splash() {
             description, set a due date, assign a priority level, and track the
             status of each task.
           </p>
-          <button>Get Started</button>
+          <Link to="sign-in" className='button'>Get Started</Link>
         </div>
       </section>
     </>
