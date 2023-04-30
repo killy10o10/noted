@@ -10,7 +10,7 @@ function SignIn() {
           <input type="password" placeholder="Password" />
           <Link className="button">Sign In</Link>
           <small>
-            Don&apos;t have an account?
+            Don&apos;t have an account?{' '}
             <strong>
               <Link to="/sign-up">Sign Up</Link>
             </strong>

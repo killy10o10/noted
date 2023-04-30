@@ -14,7 +14,7 @@ function SignUp() {
           </label>
           <Link className="button">Sign Up</Link>
           <small>
-            Already have an account?
+            Already have an account?{' '}
             <strong>
               <Link to="/sign-in">Sign In</Link>
             </strong>
