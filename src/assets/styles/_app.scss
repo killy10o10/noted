@@ -8,6 +8,11 @@
   font-family: 'Unbounded', system-ui, -apple-system;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 body {
   color: #ffff;
   background-color: $background-color;
@@ -50,6 +55,45 @@ body {
   background-clip: text;
   // text-fill-color: transparent;
   background-blend-mode: overlay, normal, normal, normal, normal;
+}
+
+.button {
+  // margin-top: 15px;
+  margin-block: 25px;
+  padding: 10px;
+  text-align: center;
+  width: 80%;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: url(.png),
+    radial-gradient(
+        60.25% 122.24% at 103.28% -41.67%,
+        #fdc2b0 0%,
+        rgba(235, 81, 158, 0.25) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    radial-gradient(
+        80.74% 163.82% at -1.23% -17.59%,
+        #5af8fe 0%,
+        rgba(235, 81, 158, 0.25) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    radial-gradient(
+        49.18% 100.93% at 77.87% 111.11%,
+        rgba(137, 59, 254, 0.85) 0%,
+        rgba(128, 187, 219, 0.2125) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    #4edffc;
+  background-blend-mode: overlay, normal, normal, normal, normal;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.button:active {
+  scale: 98%;
 }
 
 .flex-center {
