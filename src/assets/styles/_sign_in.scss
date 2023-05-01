@@ -3,8 +3,6 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  justify-content: center;
   
   h1 {
     text-align: center;
@@ -14,6 +12,7 @@
 .sign-form {
   display: flex;
   padding: 20px;
+  margin-bottom: auto;
   flex-direction: column;
   gap: 20px;
   align-items: center;
@@ -41,6 +40,7 @@
     font-size: 12px;
     display: flex;
     align-items: center;
+    text-align: center;
     gap: 5px;
     
     input {

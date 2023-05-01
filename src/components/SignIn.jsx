@@ -4,6 +4,7 @@ function SignIn() {
   return (
     <>
       <section className="sign-section">
+        <h1 className="logo">Noted</h1>
         <h1>Sign In</h1>
         <form className="sign-form">
           <input type="text" placeholder="Username" />
