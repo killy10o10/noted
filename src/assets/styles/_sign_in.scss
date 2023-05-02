@@ -41,11 +41,15 @@
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
+    position: relative;
     gap: 5px;
+    width: 100%;
     
-    input {
+    input[type=checkbox] {
       flex: .5;
     }
+
 
   }
   small {
@@ -53,5 +57,11 @@
     strong {
       color: #fff;
     }
+  }
+
+  .error-msg {
+    color: red;
+    font-size: 12px;
+    font-style: italic;
   }
 }
