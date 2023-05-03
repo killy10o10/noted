@@ -5,23 +5,24 @@ function Todos() {
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
+    priority: ''
   });
   const [message, setMessage] = useState('');
-
+  console.log(todos);
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setTodos((prevTodo) => ({
       ...prevTodo,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { description, deadline } = todos;
-    if (!description || !deadline) {
+    const { description, deadline, priority } = todos;
+    if (!description || !deadline || !priority) {
       onsubmit = false;
-      setMessage('Please provide a todo description and deadline');
+      setMessage('Please provide a todo description, deadline and priority!');
     } else {
       setMessage('');
       console.log(todos);
@@ -35,7 +36,7 @@ function Todos() {
         <h3>What&apos;s up, Quami</h3>
         <small>Add a todo</small>
         <div className="todo-input">
-          <form onSubmit={handleSubmit} className="todo-form">
+          <form className="todo-form">
             <input
               type="text"
               placeholder="eg. Walk the dog"
@@ -51,6 +52,7 @@ function Todos() {
                     type="radio"
                     name="priority"
                     id="low-priority"
+                    value="low"
                     onChange={handleChange}
                   />
                 </label>
@@ -60,6 +62,7 @@ function Todos() {
                     type="radio"
                     name="priority"
                     id="medium-priority"
+                    value="medium"
                     onChange={handleChange}
                   />
                 </label>
@@ -69,13 +72,14 @@ function Todos() {
                     type="radio"
                     name="priority"
                     id="high-priority"
+                    value="high"
                     onChange={handleChange}
                   />
                 </label>
               </div>
                 <small>Task Priority</small>
             </div>
-            <button type="button" className="button">
+            <button onClick={handleSubmit} type="button" className="button">
               Add todo
             </button>
             {message && <p className="error-msg">{message}</p>}
