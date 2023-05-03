@@ -10,7 +10,6 @@ function Todos() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(e);
     setTodos((prevTodo) => ({
       ...prevTodo,
       [name]: value,
