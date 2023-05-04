@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import {AiTwotoneThunderbolt} from 'react-icons/ai'
 // import { postTodo } from "../auth/todo"
 
 function Todos() {
@@ -27,6 +28,7 @@ function Todos() {
       setMessage('Please provide a todo description, deadline and priority!');
     } else {
       setMessage('');
+      console.log(todos)
       // postTodo(todos)
     }
   };
@@ -80,11 +82,18 @@ function Todos() {
               </div>
                 <small>Task Priority</small>
             </div>
+            {message && <p className="error-msg">{message}</p>}
             <button onClick={handleSubmit} type="button" className="button">
               Add todo
             </button>
-            {message && <p className="error-msg">{message}</p>}
           </form>
+        </div>
+        <div className="todo-list-container">
+          <ul className="todo-list">
+            <li><span className="high">Buy bread</span> <AiTwotoneThunderbolt /></li>
+            <li><span className="low">walk the dog</span> <AiTwotoneThunderbolt /></li>
+            <li><span className="medium">Eat fufu</span> <AiTwotoneThunderbolt /></li>
+          </ul>
         </div>
       </section>
     </>

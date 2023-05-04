@@ -1,5 +1,9 @@
+@import 'variables';
+
 .todo-section {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 
   small {
     color: #626262;
@@ -55,37 +59,28 @@
     gap: 5px;
   }
 
-  label[for='low-priority'] {
-    color: #78acd5;
-  }
-  label[for='medium-priority'] {
-    color: #fcf302;
-  }
-  label[for='high-priority'] {
-    color: #ff2460;
-  }
   #low-priority {
     // border-color: #a7c8e2;
     &:checked {
-      background-color: #78acd5;
+      background-color: $low-priority;
     }
   }
 
   #medium-priority {
     // border-color: #efeb72;
     &:checked {
-      background-color: #fcf302;
+      background-color: $medium-priority;
     }
   }
   #high-priority {
     // border-color: #f46d91;
     &:checked {
-      background-color: #ff2460;
+      background-color: $high-priority;
     }
   }
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .priority-container {
     width: 400px;
   }
