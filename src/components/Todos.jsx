@@ -8,7 +8,6 @@ function Todos() {
     priority: ''
   });
   const [message, setMessage] = useState('');
-  console.log(todos);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setTodos((prevTodo) => ({

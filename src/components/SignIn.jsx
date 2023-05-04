@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { signInUser } from '../auth/signin';
 
 function SignIn() {
-
-
+  const navigate = useNavigate()
+  
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -20,7 +20,7 @@ function SignIn() {
     }));
   };
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     const { username, password } = state;
     if (
@@ -36,8 +36,21 @@ function SignIn() {
       onsubmit = false;
       setMessage('please provide a username!');
     } else {
-        setMessage('');
-        signInUser(state);
+        try {
+          const response = await signInUser(state);
+          console.log(response)
+          if(response.token) {
+            setMessage('')
+            localStorage.setItem('token', response.token)
+            navigate('/todos')
+          }
+          else {
+            setMessage('Invalid username or password!')
+          }
+          
+        } catch (error) {
+          setMessage('An error occured!');
+        }
     }
   };
   return (
