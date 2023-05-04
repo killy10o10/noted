@@ -4,7 +4,6 @@ import { signInUser } from '../auth/signin';
 
 function SignIn() {
   const navigate = useNavigate()
-  
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -38,11 +37,10 @@ function SignIn() {
     } else {
         try {
           const response = await signInUser(state);
-          console.log(response)
           if(response.token) {
             setMessage('')
             localStorage.setItem('token', response.token)
-            navigate('/todos')
+            navigate('/todos', {state: {response}})
           }
           else {
             setMessage('Invalid username or password!')
