@@ -6,8 +6,7 @@ import {AiTwotoneThunderbolt} from 'react-icons/ai'
 
 function Todos() {
   const location = useLocation();
-  const { user } = location.state.user
-  // console.log(user)
+  const { username } = location.state.user
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
@@ -38,7 +37,7 @@ function Todos() {
   return (
     <>
       <section className="todo-section">
-        <h3>What&apos;s up, <span className="user">{user.username}</span></h3>
+        <h3>What&apos;s up, <span className="user">{username}</span></h3>
         <small>Add a todo</small>
         <div className="todo-input">
           <form className="todo-form">
