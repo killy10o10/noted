@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import {AiTwotoneThunderbolt} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodoList } from '../redux/todoActions';
+import TodoList from './TodoList';
 
 
 function Todos() {
@@ -14,7 +14,11 @@ function Todos() {
     dispatch(fetchTodoList());
   }, [dispatch])
 
-  console.log(todoList);
+
+  // if(todoList.status === "succeeded") {
+  //   const todoListArr = todoList.list.list
+  //   console.log(todoListArr)
+  // }
   const { username } = location.state.user
   const [todos, setTodos] = useState({
     description: '',
@@ -98,13 +102,7 @@ function Todos() {
             </button>
           </form>
         </div>
-        <div className="todo-list-container">
-          <ul className="todo-list">
-            <li><span className="high">Buy bread</span> <AiTwotoneThunderbolt /></li>
-            <li><span className="low">walk the dog</span> <AiTwotoneThunderbolt /></li>
-            <li><span className="medium">Eat fufu</span> <AiTwotoneThunderbolt /></li>
-          </ul>
-        </div>
+        <TodoList list={todoList}/>
       </section>
     </>
   );
