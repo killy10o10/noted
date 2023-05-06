@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {AiTwotoneThunderbolt} from 'react-icons/ai'
-// import { getTodos } from '../auth/todo';
-// import { postTodo } from "../auth/todo"
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTodoList } from '../redux/todoActions';
+
 
 function Todos() {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const todoList = useSelector(state => state.todo)
+
+  useEffect(() => {
+    dispatch(fetchTodoList());
+  }, [dispatch])
+
+  console.log(todoList);
   const { username } = location.state.user
   const [todos, setTodos] = useState({
     description: '',
