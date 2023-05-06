@@ -39,7 +39,8 @@ function SignIn() {
           const response = await signInUser(state);
           if(response.token) {
             setMessage('')
-            localStorage.setItem('token', response.token)
+            sessionStorage.setItem('token', response.token)
+            console.log(sessionStorage.getItem('token'))
             navigate('/todos', {state: {response}})
           }
           else {

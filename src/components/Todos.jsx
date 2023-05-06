@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {AiTwotoneThunderbolt} from 'react-icons/ai'
+import { getTodos } from '../auth/todo';
 // import { postTodo } from "../auth/todo"
 
 function Todos() {
   const location = useLocation();
-  const { username } = location.state.response.user
+  // console.log(location);
+  const { user } = location.state.response
+  console.log(getTodos())
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
@@ -28,7 +31,7 @@ function Todos() {
       setMessage('Please provide a todo description, deadline and priority!');
     } else {
       setMessage('');
-      console.log(todos)
+      // console.log(todos)
       // postTodo(todos)
     }
   };
@@ -36,7 +39,7 @@ function Todos() {
   return (
     <>
       <section className="todo-section">
-        <h3>What&apos;s up, <span className="user">{username}</span></h3>
+        <h3>What&apos;s up, <span className="user">{user.username}</span></h3>
         <small>Add a todo</small>
         <div className="todo-input">
           <form className="todo-form">
