@@ -1,9 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
-import { signInUser } from '../auth/signin';
+import { signIn } from '../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SignIn() {
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const  userData  = useSelector((state) => state.auth);
+  // console.log(userData)
+  const navigate = useNavigate();
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -34,22 +38,14 @@ function SignIn() {
     } else if (!username) {
       onsubmit = false;
       setMessage('please provide a username!');
-    } else {
-        try {
-          const response = await signInUser(state);
-          if(response.token) {
-            setMessage('')
-            sessionStorage.setItem('token', response.token)
-            console.log(sessionStorage.getItem('token'))
-            navigate('/todos', {state: {response}})
-          }
-          else {
-            setMessage('Invalid username or password!')
-          }
-          
-        } catch (error) {
-          setMessage('An error occured!');
-        }
+    }
+    else if(dispatch(signIn(state)) && !userData.user) {
+      onsubmit = false;
+      setMessage('wrong username or password');
+    }
+    else {
+      setMessage('')
+       navigate('/todos', {state: userData})
     }
   };
   return (

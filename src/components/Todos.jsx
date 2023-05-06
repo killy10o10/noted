@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {AiTwotoneThunderbolt} from 'react-icons/ai'
-import { getTodos } from '../auth/todo';
+// import { getTodos } from '../auth/todo';
 // import { postTodo } from "../auth/todo"
 
 function Todos() {
   const location = useLocation();
-  // console.log(location);
-  const { user } = location.state.response
-  console.log(getTodos())
+  const { user } = location.state.user
+  // console.log(user)
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
