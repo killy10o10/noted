@@ -1,0 +1,50 @@
+@import 'variables';
+
+.todo-list-container {
+  margin-top: 20px;
+  align-self: center;
+  width: 95%;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    background: #181818;
+    padding: 10px 15px;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      cursor: pointer;
+      color: $bright-grey;
+    }
+
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0px 10px;
+    }
+    span.high {
+      border-left: 2px solid $high-priority;
+    }
+    span.medium {
+      border-left: 2px solid $medium-priority;
+    }
+    span.low {
+      border-left: 2px solid $low-priority;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .todo-list-container {
+    width: 45%;
+  }
+}

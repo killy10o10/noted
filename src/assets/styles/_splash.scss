@@ -19,3 +19,14 @@
   }
 
 }
+
+@media (min-width:600px) {
+  .splash-content {
+    img {
+      width: 550px;
+    }
+    p {
+      max-width: 550px;
+    }
+  }
+}

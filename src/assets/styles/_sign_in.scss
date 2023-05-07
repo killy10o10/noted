@@ -16,38 +16,19 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  input {
-    background: #2B2B2B;
-    border-radius: 8px;
-    padding: 15px 12px;
-    color: #fff;
-    outline: none;
-    width: 95%;
-    box-shadow: none;
-    border: 2px solid #ced6e000;
-    transition: all 0.3s ease-in-out;
-
-    &:hover,
-    &:focus {
-      border-color: #3d9cff;
-    }
-
-    &:focus {
-      box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
-    }
-  }
+  
   label {
     font-size: 12px;
     display: flex;
     align-items: center;
     text-align: center;
-    justify-content: center;
-    position: relative;
+    word-wrap: break-word;
     gap: 5px;
-    width: 100%;
+    width: fit-content;
     
     input[type=checkbox] {
-      flex: .5;
+      // flex: .5;
+      width: fit-content;
     }
 
 
@@ -59,9 +40,4 @@
     }
   }
 
-  .error-msg {
-    color: red;
-    font-size: 12px;
-    font-style: italic;
-  }
 }

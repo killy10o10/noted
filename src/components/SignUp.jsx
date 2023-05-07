@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { signupUser } from '../auth/signup';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { signUp } from '../redux/authSlice';
+
 
 function SignUp() {
   const [state, setState] = useState({
@@ -11,7 +13,10 @@ function SignUp() {
   });
 
   const [message, setMessage] = useState('');
-
+  const dispacth = useDispatch();
+  const isLoading = useSelector(state => state.auth.isLoading);
+  const error = useSelector(state => state.auth.error)
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setState((prevState) => ({
@@ -20,7 +25,7 @@ function SignUp() {
     }));
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const { username, password, confirmPassword, tosAgreement } = state;
     if (
@@ -28,16 +33,21 @@ function SignUp() {
       password.length === 0 ||
       confirmPassword.length === 0
     ) {
-      onsubmit = false;
       setMessage('Please fill out all fields!');
     } else if (password !== confirmPassword) {
-      onsubmit = false;
       setMessage('password mismatch!');
     } else if (tosAgreement === false) {
-      onsubmit = false;
       setMessage('please agree to the terms of use!');
     } else {
-      signupUser(state);
+      setMessage('');
+      const actionResult = await dispacth(signUp(state));
+        if(error){
+          setMessage(error);
+        }
+        else{
+          const userData = actionResult.payload;
+          navigate('/todos', {state: userData});
+        }
     }
   };
 
@@ -77,8 +87,8 @@ function SignUp() {
             />
             I accept the Terms of Use and Privacy Policy
           </label>
-          <button className="button" type="submit" onClick={handleSignUp}>
-            Sign Up
+          <button disabled={isLoading} className="button" type="submit" onClick={handleSignUp}>
+            {isLoading ? 'Signing Up...' : 'Sign Up'}
           </button>
           {message && <p className="error-msg">{message}</p>}
           <small>
