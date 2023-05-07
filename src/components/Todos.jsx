@@ -4,26 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodoList } from '../redux/todoActions';
 import TodoList from './TodoList';
 
-
 function Todos() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const todoList = useSelector(state => state.todo)
+  const todoList = useSelector((state) => state.todo);
+  const isLoading = useSelector((state) => state.todo.status);
+
+  console.log(isLoading);
 
   useEffect(() => {
     dispatch(fetchTodoList());
-  }, [dispatch])
+  }, [dispatch]);
 
-
-  // if(todoList.status === "succeeded") {
-  //   const todoListArr = todoList.list.list
-  //   console.log(todoListArr)
-  // }
-  const { username } = location.state.user
+  const { username } = location.state.user;
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
-    priority: ''
+    priority: '',
   });
   const [message, setMessage] = useState('');
   const handleChange = (e) => {
@@ -50,7 +47,9 @@ function Todos() {
   return (
     <>
       <section className="todo-section">
-        <h3>What&apos;s up, <span className="user">{username}</span></h3>
+        <h3>
+          What&apos;s up, <span className="user">{username}</span>
+        </h3>
         <small>Add a todo</small>
         <div className="todo-input">
           <form className="todo-form">
@@ -94,7 +93,7 @@ function Todos() {
                   />
                 </label>
               </div>
-                <small>Task Priority</small>
+              <small>Task Priority</small>
             </div>
             {message && <p className="error-msg">{message}</p>}
             <button onClick={handleSubmit} type="button" className="button">
@@ -102,7 +101,11 @@ function Todos() {
             </button>
           </form>
         </div>
-        <TodoList list={todoList}/>
+        {isLoading === 'loading' ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <TodoList list={todoList} />
+        )}
       </section>
     </>
   );
