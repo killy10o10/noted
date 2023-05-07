@@ -1,11 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { signIn } from '../redux/authSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoading = useSelector(state => state.auth.isLoading)
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -35,7 +36,7 @@ function SignIn() {
       const actionResult = await dispatch(signIn(state));
       try {
         if (actionResult.error) {
-          setMessage(actionResult.error.message);
+          setMessage('Wrong username or password!');
         } else {
           const userData = actionResult.payload;
           navigate('/todos', { state: userData });
@@ -63,8 +64,8 @@ function SignIn() {
             name="password"
             onChange={handleChange}
           />
-          <button type="submit" className="button" onClick={handleSignIn}>
-            Sign In
+          <button disabled={isLoading} type="submit" className="button" onClick={handleSignIn}>
+            {isLoading ? 'Signing In' : 'Sign In'}
           </button>
           {message && <p className="error-msg">{message}</p>}
           <small>
