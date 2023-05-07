@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import {  useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTodoList } from '../redux/todoActions';
+import { fetchTodoList, addTodo } from '../redux/todoActions';
 import TodoList from './TodoList';
 
 function Todos() {
@@ -9,18 +9,19 @@ function Todos() {
   const dispatch = useDispatch();
   const todoList = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.todo.status);
+  const [todos, setTodos] = useState({
+    description: '',
+    deadline: '',
+    priority: '',
+  });
+  const [error, setError] = useState('')
 
   useEffect(() => {
     dispatch(fetchTodoList());
   }, [dispatch]);
 
   const { username } = location.state.user;
-  const [todos, setTodos] = useState({
-    description: '',
-    deadline: '',
-    priority: '',
-  });
-  const [message, setMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setTodos((prevTodo) => ({
@@ -29,16 +30,24 @@ function Todos() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { description, deadline, priority } = todos;
     if (!description || !deadline || !priority) {
-      onsubmit = false;
-      setMessage('Please provide a todo description, deadline and priority!');
+      setError('Please provide a todo description, deadline and priority!');
     } else {
-      setMessage('');
-      // console.log(todos)
-      // postTodo(todos)
+      try{
+        await dispatch(addTodo(todos)).unwrap();
+        setError('')
+        setTodos({
+          description: "",
+          deadline: "",
+          priority: "",
+        });
+      }catch(error) {
+        setError('Failed to add todo');
+        console.log(error)
+      }
     }
   };
 
@@ -93,7 +102,7 @@ function Todos() {
               </div>
               <small>Task Priority</small>
             </div>
-            {message && <p className="error-msg">{message}</p>}
+            {error && <p className="error-msg">{error}</p>}
             <button onClick={handleSubmit} type="button" className="button">
               Add todo
             </button>
