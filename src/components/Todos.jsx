@@ -10,8 +10,6 @@ function Todos() {
   const todoList = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.todo.status);
 
-  console.log(isLoading);
-
   useEffect(() => {
     dispatch(fetchTodoList());
   }, [dispatch]);
