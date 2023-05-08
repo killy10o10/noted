@@ -17,7 +17,7 @@ function Todos() {
   const { username } = location.state.user;
   async function handleAddTodo() {
     try {
-      await dispatch(addTodo(todos)).unwrap();
+      console.log(await dispatch(addTodo(todos)).unwrap());
       setAddTodoError('');
     } catch (error) {
       setAddTodoError('Failed to add todo');
