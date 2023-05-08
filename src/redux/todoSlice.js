@@ -27,19 +27,12 @@ const todoSlice = createSlice({
     });
     builder.addCase(addTodo.fulfilled, (state, action) => {
       state.status = 'succeeded';
-      state.list.push(action.payload);
+      state.list = [...state.list, action.payload];
     });
     builder.addCase(addTodo.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.message;
     });
-    builder.addMatcher(
-      (action) => action.type.endsWith('/rejected'),
-      (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message
-      }
-    );
   },
 });
 
