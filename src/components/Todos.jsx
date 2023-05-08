@@ -1,25 +1,20 @@
-import {  useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTodoList, addTodo } from '../redux/todoActions';
+import { addTodo } from '../redux/todoActions';
 import TodoList from './TodoList';
 
 function Todos() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const todoList = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.todo.status);
+  const todoList = useSelector((state) => state.todo)
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
     priority: '',
   });
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    dispatch(fetchTodoList());
-  }, [dispatch]);
-
+  const [error, setError] = useState('');
   const { username } = location.state.user;
 
   const handleChange = (e) => {
@@ -36,17 +31,17 @@ function Todos() {
     if (!description || !deadline || !priority) {
       setError('Please provide a todo description, deadline and priority!');
     } else {
-      try{
+      try {
         await dispatch(addTodo(todos)).unwrap();
-        setError('')
+        setError('');
         setTodos({
-          description: "",
-          deadline: "",
-          priority: "",
+          description: '',
+          deadline: '',
+          priority: '',
         });
-      }catch(error) {
+      } catch (error) {
         setError('Failed to add todo');
-        console.log(error)
+        console.log(error);
       }
     }
   };
@@ -110,8 +105,10 @@ function Todos() {
         </div>
         {isLoading === 'loading' ? (
           <p className="text-center">Loading...</p>
+        ) : isLoading === 'failed' ? (
+          <p className="text-center error-msg">Failed to load List items</p>
         ) : (
-          <TodoList list={todoList} />
+          <TodoList list={todoList}/>
         )}
       </section>
     </>
