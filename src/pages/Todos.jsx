@@ -1,22 +1,17 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
 import { addTodo } from '../redux/todoActions';
-import TodoList from './TodoList';
 
 function Todos() {
-  const location = useLocation();
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.todo.status);
-  const todoList = useSelector((state) => state.todo)
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
     priority: '',
   });
   const [error, setError] = useState('');
-  const { username } = location.state.user;
-
+ 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setTodos((prevTodo) => ({
@@ -32,7 +27,7 @@ function Todos() {
       setError('Please provide a todo description, deadline and priority!');
     } else {
       try {
-        await dispatch(addTodo(todos)).unwrap();
+        await dispatch(addTodo(todos))
         setError('');
         setTodos({
           description: '',
@@ -49,11 +44,11 @@ function Todos() {
   return (
     <>
       <section className="todo-section">
-        <h3>
-          What&apos;s up, <span className="user">{username}</span>
-        </h3>
-        <small>Add a todo</small>
         <div className="todo-input">
+          <nav>
+            <NavLink to="/todos" className={({isActive}) => (isActive ? "link-active" : "")}>Add a Todo</NavLink>
+            <NavLink to="/todo-list" className={({isActive}) => (isActive ? "link-active" : "")}>Todo List</NavLink>
+          </nav>
           <form className="todo-form">
             <input
               type="text"
@@ -103,13 +98,6 @@ function Todos() {
             </button>
           </form>
         </div>
-        {isLoading === 'loading' ? (
-          <p className="text-center">Loading...</p>
-        ) : isLoading === 'failed' ? (
-          <p className="text-center error-msg">Failed to load List items</p>
-        ) : (
-          <TodoList list={todoList}/>
-        )}
       </section>
     </>
   );

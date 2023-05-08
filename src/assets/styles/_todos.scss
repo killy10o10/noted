@@ -10,6 +10,29 @@
   }
 }
 
+.todo-input {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  nav {
+    display: flex;
+    gap: 15px;
+
+    a {
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-weight: bold;
+    }
+  }
+}
+
+.link-active {
+  background-color: #78ACD5;
+  color: #181818;
+}
+
 .todo-form {
   margin-top: 20px;
   display: flex;
