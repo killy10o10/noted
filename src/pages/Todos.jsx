@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { addTodo } from '../redux/todoActions';
 
 function Todos() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.todo.status)
   const [todos, setTodos] = useState({
     description: '',
     deadline: '',
@@ -27,7 +28,8 @@ function Todos() {
       setError('Please provide a todo description, deadline and priority!');
     } else {
       try {
-        await dispatch(addTodo(todos))
+        await dispatch(addTodo(todos)).unwrap();
+        console.log(todos)
         setError('');
         setTodos({
           description: '',
@@ -35,6 +37,7 @@ function Todos() {
           priority: '',
         });
       } catch (error) {
+        console.log(todos)
         setError('Failed to add todo');
         console.log(error);
       }
@@ -93,8 +96,8 @@ function Todos() {
               <small>Task Priority</small>
             </div>
             {error && <p className="error-msg">{error}</p>}
-            <button onClick={handleSubmit} type="button" className="button">
-              Add todo
+            <button disabled={isLoading === "loading"} onClick={handleSubmit} type="button" className="button">
+              {isLoading === "loading" ? "Adding todo..." : "Add todo"}
             </button>
           </form>
         </div>
