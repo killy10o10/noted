@@ -2,11 +2,11 @@
 import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import uuid from 'react-uuid';
 
+
 function TodoList(props) {
-  const { status, list } = props.list;
+  const { list } = props.list;
 
   const renderTodo = () => {
-    if (status === 'succeeded') {
       const todoListArr = list.list;
       if (todoListArr && todoListArr.length > 0) {
         return todoListArr.map((listItem) => (
@@ -16,16 +16,19 @@ function TodoList(props) {
           </li>
         ));
       }
+      return <p className="text-center">no List item here. Add a todo</p>;
     }
-    return <p className="text-center">no List item here. Add a todo</p>;
-  };
+    return (
+      <div className="todo-list-container">
+        <ul className="todo-list">
+          {renderTodo()}
+        </ul>
+      </div>
+    );
+  }
 
-  return (
-    <div className="todo-list-container">
-      <ul className="todo-list">{renderTodo()}</ul>
-    </div>
-  );
-}
+
+
 
 export default TodoList;
 
