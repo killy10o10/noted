@@ -1,0 +1,32 @@
+.splash-section {
+  height: 100vh;
+}
+
+.splash-content {
+  padding: 20px;
+  margin: auto;
+  img {
+    width: 95%;
+  }
+  h3 {
+    margin-top: 15px;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 300;
+  }
+
+}
+
+@media (min-width:600px) {
+  .splash-content {
+    img {
+      width: 550px;
+    }
+    p {
+      max-width: 550px;
+    }
+  }
+}

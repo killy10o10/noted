@@ -1,0 +1,43 @@
+
+.sign-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  h1 {
+    text-align: center;
+  }
+}
+
+.sign-form {
+  display: flex;
+  padding: 20px;
+  margin-bottom: auto;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  
+  label {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    word-wrap: break-word;
+    gap: 5px;
+    width: fit-content;
+    
+    input[type=checkbox] {
+      // flex: .5;
+      width: fit-content;
+    }
+
+
+  }
+  small {
+    color: #525252;
+    strong {
+      color: #fff;
+    }
+  }
+
+}
