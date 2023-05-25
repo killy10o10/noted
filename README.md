@@ -21,7 +21,7 @@
 ## Live Demo
 
 - [App Live Link]()
- ![Alt text](./screenshot.png "Noted")
+- ![Noted](https://user-images.githubusercontent.com/89058561/235319253-12ce94be-f3b2-4e7c-8e08-dbc422df2858.png)
 
 
 ## Getting Started
